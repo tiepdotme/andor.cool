@@ -8,27 +8,26 @@
  */
 
 (function() {
-	var NSFW_COINTAINER_SELECTOR = '.nsfw';
-	var NSFW_BUTTON_SELECTOR = '.nsfw__button';
-	var NSFW_SHOW_CLASS = 'nsfw--show';
-	var NSFW_SHOW_EVENT = 'click';
+	var NSFW_COINTAINER_SELECTOR = '.post__image--nsfw';
+	var NSFW_REVEAL_EVENT = 'click';
+	var NSFW_TAG = '_sfw';
 
 	var nsfwPhotos = document.querySelectorAll(NSFW_COINTAINER_SELECTOR);
 
-	var showEventHandler = function() {
-		if (this.className.indexOf(NSFW_SHOW_CLASS) !== -1) {
+	var revealEventHandler = function() {
+		if (this.src.indexOf(NSFW_TAG) === -1) {
 		 	return;
 		}
-		this.className += ' ' + NSFW_SHOW_CLASS;
+		this.src = this.src.replace(NSFW_TAG, '');
 	};
 
 	for (var i = 0; i < nsfwPhotos.length; i++) {
 		var container = nsfwPhotos[i];
 		if (container.addEventListener) {
-			container.addEventListener(NSFW_SHOW_EVENT, showEventHandler);
+			container.addEventListener(NSFW_REVEAL_EVENT, revealEventHandler);
 		}
 		else if (container.attachEvent) {
-			container.attachEvent(NSFW_SHOW_EVENT, showEventHandler);
+			container.attachEvent(NSFW_REVEAL_EVENT, revealEventHandler);
 		}
 	}
 })();

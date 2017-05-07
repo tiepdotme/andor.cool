@@ -1,16 +1,7 @@
-{% capture source %}{{ site.imagehost_url }}/{{ include.date | date: "%Y" }}/{{ include.img }}.jpg{% endcapture %}
+{% capture source %}{{ site.imagehost_url }}/{{ include.date | date: "%Y" }}/{{ include.img }}{% endcapture %}
 
 {% if include.nsfw %}
-
-<div class="nsfw">
-	<img src="{{ source }}" class="nsfw__image" alt="{{ include.title }}" title="{{ include.title }}" />
-	<div class="nsfw__dimmer">
-		<button class="nsfw__button" value="Show photo" />
-	</div>
-</div>
-
+<img src="{{ source }}_sfw.jpg" class="post__image post__image--nsfw" alt="{{ include.title }}" title="{{ include.title }}" />
 {% else %}
-
-<img src="{{ source }}" alt="{{ include.title }}" title="{{ include.title }}" />
-
+<img src="{{ source }}.jpg" class="post__image" alt="{{ include.title }}" title="{{ include.title }}" />
 {% endif %}
